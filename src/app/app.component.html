@@ -1,0 +1,37 @@
+<div class="top-menu">
+
+    <img class="logo"
+         src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+
+</div>
+
+<div class="demo">
+  <!-- Using pipe -->
+  <div>Start Date: {{startDate | date: 'MMM dd yyyy': ''}}</div>
+  <div>{{title | titlecase}}</div>
+<!--  <div>{{price | number: '3.2-4'}}</div>-->
+  <div>{{price | currency: 'GBP'}}</div>
+  <div>Percentage: {{rate | percent}}</div>
+</div>
+
+<!--{{ courses | json}}-->
+
+<div *ngFor="let pair of course | keyvalue">
+     {{pair.key + ': ' + pair.value}}
+</div>
+
+<div class="courses">
+
+    <!-- Slice pipe -->
+    <course-card *ngFor="let course of courses | slice:0:2; index as i; first as isFirst; last as isLast;
+                  even as isEvan; odd as isOdd;"
+      [class.is-first]="isFirst"
+     [class.is-last]="isLast"
+     [class.is-even]="isEvan"
+     [class.is-odd]="isOdd"
+      (courseSelected)="onCourseSelected($event)"
+                 [course]="course" [cardIndex]="i + 1"></course-card>
+
+</div>
+
+
